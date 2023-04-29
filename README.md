@@ -1,3 +1,4 @@
 # My_Suckless
 Just clone and make install.
-![1682737511](https://user-images.githubusercontent.com/126330281/235280738-8c9d15f9-ffe5-48e8-b37e-3dffb043f113.png)
+
+![1682738490](https://user-images.githubusercontent.com/126330281/235281209-dc50328a-f7bd-46a0-99f7-6a70ed9a1608.png)
