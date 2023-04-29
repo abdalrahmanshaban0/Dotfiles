@@ -1,2 +1,3 @@
 # My_Suckless
-Here are just my patched suckless tools. If I or you want to use them in different systems just make install, you don't have to download and patch every patch you want from suckless and configure it again.
+Just clone and make install.
+![1682737511](https://user-images.githubusercontent.com/126330281/235280738-8c9d15f9-ffe5-48e8-b37e-3dffb043f113.png)
