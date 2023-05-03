@@ -1,0 +1,2 @@
+picom &
+nitrogen --restore &
