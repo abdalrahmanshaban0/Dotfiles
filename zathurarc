@@ -1,0 +1,4 @@
+set recolor   
+set recolor-lightcolor \#222222
+set recolor-darkcolor \#ffffff
+set recolor-keephue
