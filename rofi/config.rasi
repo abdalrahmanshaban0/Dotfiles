@@ -2,15 +2,15 @@
 
 configuration {
  display-drun: "Applications";
- modi: "window,drun,ssh,combi";
- font: "Hack-Regular 12";
- combi-modi: "window,drun,ssh";
+ modi: "drun,run";
+ font: "HackNerdFontMono 12";
+ combi-modi: "drun,run";
  show-icons: true;
- icon-theme: "Papirus";
+ icon-theme: "Papirus-Dark";
  }
 
 window {
- width: 30%;
+ width: 25%;
 }
 
 element-icon {
