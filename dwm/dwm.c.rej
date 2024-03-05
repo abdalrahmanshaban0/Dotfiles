@@ -1,35 +1,29 @@
 --- dwm.c
 +++ dwm.c
-@@ -250,18 +276,23 @@ static int updategeom(void);
- static void updatenumlockmask(void);
- static void updatesizehints(Client *c);
- static void updatestatus(void);
-+static void updatesystray(void);
-+static void updatesystrayicongeom(Client *i, int w, int h);
-+static void updatesystrayiconstate(Client *i, XPropertyEvent *ev);
- static void updatetitle(Client *c);
- static void updatewindowtype(Client *c);
- static void updatewmhints(Client *c);
- static void view(const Arg *arg);
- static Client *wintoclient(Window w);
- static Monitor *wintomon(Window w);
-+static Client *wintosystrayicon(Window w);
- static int xerror(Display *dpy, XErrorEvent *ee);
- static int xerrordummy(Display *dpy, XErrorEvent *ee);
- static int xerrorstart(Display *dpy, XErrorEvent *ee);
- static void zoom(const Arg *arg);
+@@ -1671,9 +1710,25 @@ showhide(Client *c)
+ void
+ sigchld(int unused)
+ {
++	pid_t pid;
++
+ 	if (signal(SIGCHLD, sigchld) == SIG_ERR)
+ 		die("can't install SIGCHLD handler:");
+-	while (0 < waitpid(-1, NULL, WNOHANG));
++	while (0 < (pid = waitpid(-1, NULL, WNOHANG))) {
++		pid_t *p, *lim;
++
++		if (!(p = autostart_pids))
++			continue;
++		lim = &p[autostart_len];
++
++		for (; p < lim; p++) {
++			if (*p == pid) {
++				*p = -1;
++				break;
++			}
++		}
++
++	}
+ }
  
- /* variables */
-+static Systray *systray = NULL;
- static const char broken[] = "broken";
- static char stext[256];
- static int screen;
-@@ -654,7 +742,7 @@ configurenotify(XEvent *e)
- 				for (c = m->clients; c; c = c->next)
- 					if (c->isfullscreen)
- 						resizeclient(c, m->mx, m->my, m->mw, m->mh);
--				XMoveResizeWindow(dpy, m->barwin, m->wx, m->by, m->ww, bh);
-+				resizebarwin(m);
- 			}
- 			focus(NULL);
- 			arrange(NULL);
+ void
