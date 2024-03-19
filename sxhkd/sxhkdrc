@@ -1,0 +1,15 @@
+XF86MonBrightness{Up,Down}  
+	brightnessctl s 10{+,-}  
+
+XF86Audio{Raise,Lower}Volume  
+	pulsemixer --change-volume {+,-}10
+
+XF86AudioMute  
+	pulsemixer  --toggle-mute
+
+super + l
+	slock
+alt + r
+	rofi -show drun
+Print
+	maim -s | tee ~/Pictures/$(date +%s).png | xclip -selection clipboard -t image/png
