@@ -7,9 +7,9 @@ XF86Audio{Raise,Lower}Volume
 XF86AudioMute  
 	pulsemixer  --toggle-mute
 
-super + l
+super + shift + l
 	slock
-alt + r
+super + r
 	rofi -show drun
 Print
 	maim -s | tee ~/Pictures/$(date +%s).png | xclip -selection clipboard -t image/png
