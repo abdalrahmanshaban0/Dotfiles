@@ -1,0 +1,106 @@
+{
+     "layer": "top", // Waybar at top layer
+     "position": "top", // Waybar position (top|bottom|left|right)
+//    "height": 32, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["pulseaudio", "cpu", "memory", "temperature", "battery", "tray"],
+    // Modules configuration
+    "hyprland/window":{
+	"max-length": 50,
+},
+
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+
+  "clock": {
+	"interval":1,
+  	"format": "{:%I:%M:%S %p  %A %d %b %y}",
+  	"tooltip-format": "<tt><small>{calendar}</small></tt>",
+  	"calendar": {
+  		"mode"          : "year",
+  		"mode-mon-col"  : 3,
+  		"weeks-pos"     : "right",
+  		"on-scroll"     : 1,
+  		"on-click-right": "mode",
+  		"format": {
+  			"months":     "<span color='#ffead3'><b>{}</b></span>",
+  			"days":       "<span color='#ecc6d9'><b>{}</b></span>",
+  			"weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+  			"weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+  			"today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+  		}
+  	},
+  	"actions": {
+  		"on-click-right": "mode",
+  		"on-click-forward": "tz_up",
+  		"on-click-backward": "tz_down",
+  		"on-scroll-up": "shift_up",
+  		"on-scroll-down": "shift_down"
+  	}
+  },
+
+   "cpu": {
+	"interval": 1,
+        "format": "{usage}% {max_frequency}GHz ",
+        "tooltip": true
+    },
+    
+    "memory": {
+	"interval": 1,
+        "format": "{used}/{total}Gb "
+    },
+
+    "temperature": {
+        "interval": 1,
+        "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+        "critical-threshold": 90,
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+
+    "battery": {
+        "bat": "BAT0",
+        "interval" : 1,
+        "format-discharging": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% {icon}  " ,
+        "format-icons": ["", "", "", "", ""],
+        "on-click": "echo $((1^$(cat /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode))) > /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode"
+    },
+
+    "pulseaudio": {
+        "scroll-step": 5, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "hyprland/language": {
+        "format": "{short}",
+    },
+}
+
+"backlight/slider": {
+    "min": 0,
+    "max", 100,
+    "orientation": "horizontal",
+    //"device": ""
+}
